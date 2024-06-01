@@ -1,0 +1,4 @@
+docker_image
+pack/node_modules
+pack/package-lock.json
+

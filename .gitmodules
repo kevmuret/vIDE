@@ -1,0 +1,9 @@
+[submodule "vim-git"]
+	path = pack/start/vim-git
+	url = https://github.com/kevmuret/vim-git
+[submodule "vim-lsp"]
+	path = pack/start/vim-lsp
+	url = https://github.com/prabirshrestha/vim-lsp
+[submodule "phpactor"]
+	path = pack/phpactor
+	url = https://github.com/phpactor/phpactor
