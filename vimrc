@@ -54,6 +54,48 @@ if filereadable(s:pack_dir.'/node_modules/vim-language-server/bin/index.js')
 		\ },
 	\ })
 endif
+if filereadable(s:pack_dir.'/make-lsp-vscode/server/src/server.js')
+	au User lsp_setup call lsp#register_server({
+	\	'name': 'make-lsp-server',
+	\	'cmd': ['node', s:pack_dir.'/make-lsp-vscode/server/src/server.js', '--stdio'],
+	\	'allowlist': ['make'],
+	\ })
+endif
+if filereadable(s:pack_dir.'/node_modules/bash-language-server/out/cli.js')
+	au User lsp_setup call lsp#register_server({
+	\	'name': 'bash-language-server',
+	\	'cmd': ['node', s:pack_dir.'/node_modules/bash-language-server/out/cli.js', 'start'],
+	\	'allowlist': ['sh'],
+	\ })
+endif
+if executable('ccls')
+	au User lsp_setup call lsp#register_server({
+	\	'name': 'ccls',
+	\	'cmd': ['ccls'],
+	\	'allowlist': ['c', 'cpp'],
+	\ })
+endif
+if executable(s:pack_dir.'/node_modules/dockerfile-language-server-nodejs/bin/docker-langserver')
+	au User lsp_setup call lsp#register_server({
+	\	'name': 'dockerfile-language-server',
+	\	'cmd': [s:pack_dir.'/node_modules/dockerfile-language-server-nodejs/bin/docker-langserver', '--stdio'],
+	\	'allowlist': ['dockerfile'],
+	\ })
+endif
+if filereadable(s:pack_dir.'/vscode/extensions/html-language-features/server/src/node/htmlServerMain.js')
+	au User lsp_setup call lsp#register_server({
+	\	'name': 'vscode-html-languageserver',
+	\	'cmd': ['node', s:pack_dir.'/vscode/extensions/html-language-features/server/src/node/htmlServerMain.js', '--stdio'],
+	\	'allowlist': ['html'],
+	\ })
+endif
+if executable(s:pack_dir.'/node_modules/quick-lint-js/linux-x64/bin/quick-lint-js')
+	au User lsp_setup call lsp#register_server({
+	\	'name': 'quick-lint-js',
+	\	'cmd': [s:pack_dir.'/node_modules/quick-lint-js/linux-x64/bin/quick-lint-js', '--lsp'],
+	\	'allowlist': ['javascript'],
+	\ })
+endif
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete

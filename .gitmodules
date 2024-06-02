@@ -7,3 +7,9 @@
 [submodule "phpactor"]
 	path = pack/phpactor
 	url = https://github.com/phpactor/phpactor
+[submodule "make-lsp-vscode"]
+	path = pack/make-lsp-vscode
+	url = https://github.com/alexclewontin/make-lsp-vscode/
+[submodule "vscode"]
+	path = pack/vscode
+	url = https://github.com/microsoft/vscode/

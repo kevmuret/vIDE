@@ -1,5 +1,8 @@
 {
   "dependencies": {
-    "vim-language-server": "^2.3.1"
+    "vim-language-server": "^2.3.1",
+    "bash-language-server": "^5.3.3",
+    "dockerfile-language-server-nodejs": "0.10.2",
+    "quick-lint-js": "^3.2.0"
   }
 }
