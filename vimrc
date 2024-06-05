@@ -128,6 +128,39 @@ augroup lsp_install
 	autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
+" Custom folding based on indent (should be able to handle a mix of space and tabs as long as the number of spaces correspond to the &tabstop value).
+let g:lsp_fold_enabled=0
+function MyFoldText()
+	let l:summary = getline(v:foldstart)
+	let l:indents = matchstr(l:summary, '^[ 	]\+')
+	if l:indents == ''
+		return l:summary
+	endif
+	return substitute(substitute(l:indents, '	', repeat('-', &tabstop), 'g'), ' ', '-', 'g').strpart(l:summary, len(l:indents))
+endfunction
+function MyFoldFunc()
+	let l:line = getline(v:lnum)
+	if matchstr(l:line, '^[ 	]\+$') != ''
+		return '='
+	endif
+	let l:indents = matchstr(l:line, '^[ 	]\+')
+	let l:space_indent = repeat(' ', &tabstop)
+	let l:fold_level = 0
+	while l:indents != ''
+		if l:indents[0] == '	'
+			let l:fold_level += 1
+			let l:indents = strpart(l:indents, 1)
+		elseif matchstr(l:indents, '^'.l:space_indent)
+			let l:fold_level += 1
+			let l:indents = strpart(l:indents, &tabstop)
+		endif
+	endwhile
+	return l:fold_level
+endfunction
+set foldmethod=expr
+set foldexpr=MyFoldFunc()
+set foldtext=MyFoldText()
+
 let s:this_vimrc = s:home_dir.'/.vimrc'
 let s:cwd_vimrc = getcwd().'/.vimrc'
 if s:cwd_vimrc != s:this_vimrc && exists(s:cwd_vimrc)
