@@ -18,16 +18,18 @@ endfunction
 call timer_start(1000, 'GitStartBranchTracking')
 set laststatus=2
 set statusline=
-set statusline +=%1*\ %n\ %*            "buffer number
-set statusline +=%5*%{&ff}%*            "file format
-set statusline +=%3*%y%*                "file type
-set statusline +=%3*%{'[🌲'.g:git_current_branch_name.']'}%*            "git current branch
-set statusline +=%4*\ %<%F%*            "full path
-set statusline +=%2*%m%*                "modified flag
-set statusline +=%1*%=%5l%*             "current line
-set statusline +=%2*/%L%*               "total lines
-set statusline +=%1*%4v\ %*             "virtual column number
-set statusline +=%2*0x%04B\ %*          "character under cursor
+set statusline +=\ %n\             "buffer number
+set statusline +=%{&ff}            "file format
+set statusline +=%y                "file type
+set statusline +=%{'[🌲'.g:git_current_branch_name.']'}            "git current branch
+set statusline +=\ %<%F            "full path
+set statusline +=%m                "modified flag
+set statusline +=%=%5l             "current line
+set statusline +=/%L               "total lines
+set statusline +=%4v\              "virtual column number
+set statusline +=0x%04B\           "character under cursor
+hi StatusLine cterm=none ctermfg=Black ctermbg=LightYellow
+hi StatusLineNC cterm=none ctermfg=Black ctermbg=LightGray
 
 autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
