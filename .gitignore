@@ -1,4 +1,14 @@
+## Build files
 docker_image
 pack/node_modules
 pack/package-lock.json
 
+## CCLS files
+.ccls-cache/*
+
+## VIM files
+.vimrc
+.vim/*
+*.swp
+*.swo
+.netrwhist
